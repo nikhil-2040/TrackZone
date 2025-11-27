@@ -1,0 +1,140 @@
+/* ✅ Background - same as Home page */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f9fafb, #eef3ff);
+  color: #1f1f1f;
+  font-family: "Inter", sans-serif;
+  padding: 30px 15px;
+  overflow: hidden;
+}
+
+/* ✅ Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid rgba(200, 210, 255, 0.4);
+  padding: 45px 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ Title + Text */
+.register-title {
+  text-align: center;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 1.8rem;
+}
+
+.register-subtext {
+  display: block;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 15px;
+  color: #555;
+}
+
+/* ✅ Input Styles */
+.register-form input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d6d9f5;
+  border-radius: 10px;
+  padding: 12px;
+  color: #1f1f1f;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.register-form input:focus,
+.register-form input:hover {
+  border-color: #2f54eb !important;
+  box-shadow: 0 0 8px rgba(47, 84, 235, 0.3);
+  background: #fff;
+}
+
+.ant-input-prefix {
+  color: #2f54eb;
+}
+
+/* ✅ Button */
+.register-button {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  background: linear-gradient(90deg, #2f54eb, #597ef7);
+  color: #fff;
+  border: none;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(47, 84, 235, 0.25);
+}
+
+.register-button:hover {
+  background: linear-gradient(90deg, #1d39c4, #2f54eb);
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(47, 84, 235, 0.45);
+}
+
+/* ✅ Animation Right Side */
+.register-animation {
+  width: 100%;
+  max-width: 450px;
+  margin-left: 50px;
+  filter: drop-shadow(0 0 12px rgba(47, 84, 235, 0.25));
+}
+
+/* ✅ Layout for Two Sections (Card + Animation) */
+.register-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* ✅ Responsive */
+@media (max-width: 992px) {
+  .register-wrapper {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .register-animation {
+    margin-left: 0;
+    width: 85%;
+    margin-top: 10px;
+  }
+
+  .glass-card {
+    padding: 35px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-title {
+    font-size: 1.5rem;
+  }
+
+  .register-button {
+    height: 42px;
+  }
+}
