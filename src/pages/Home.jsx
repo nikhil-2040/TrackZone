@@ -7,7 +7,7 @@ import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import Lottie from "lottie-react";
 import loading from "../assets/loading.json"; // ✅ your animation file
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/Home.css";
+import "../styles/home.css";
 
 const Home = () => {
   const navigate = useNavigate();
