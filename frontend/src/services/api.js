@@ -1,8 +1,15 @@
 import axios from "axios";
 
+// Get API base URL from environment variables
+// Falls back to localhost:5000 if not defined
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
+console.log("🔌 API Base URL:", baseURL); // Debug log
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL,
   timeout: 10000,
+  withCredentials: true, // Enable sending cookies/auth headers
 });
 
 // Request interceptor - add auth token

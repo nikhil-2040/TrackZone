@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema(
   {
@@ -23,4 +23,4 @@ itemSchema.index({ title: "text", description: "text", location: "text" });
 
 const Item = mongoose.model("Item", itemSchema);
 
-export default Item;
+module.exports = Item;

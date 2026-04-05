@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const contactRequestSchema = new mongoose.Schema(
   {
@@ -18,4 +18,4 @@ contactRequestSchema.index({ item: 1, requester: 1 }, { unique: true });
 
 const ContactRequest = mongoose.model("ContactRequest", contactRequestSchema);
 
-export default ContactRequest;
+module.exports = ContactRequest;

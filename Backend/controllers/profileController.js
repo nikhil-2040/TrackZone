@@ -1,6 +1,6 @@
-import ContactRequest from "../models/ContactRequest.js";
-import Item from "../models/Item.js";
-import User from "../models/User.js";
+const ContactRequest = require("../models/ContactRequest");
+const Item = require("../models/Item");
+const User = require("../models/User");
 
 const sanitizeUser = (userDoc, includePrivate = false) => {
   if (!userDoc) return null;
@@ -32,7 +32,7 @@ const getUserPayload = async ({ userId, includePrivate }) => {
   };
 };
 
-export const getCurrentProfile = async (req, res) => {
+exports.getCurrentProfile = async (req, res) => {
   try {
     const payload = await getUserPayload({ userId: req.user.id, includePrivate: true });
     return res.status(200).json({ success: true, data: payload });
@@ -42,7 +42,7 @@ export const getCurrentProfile = async (req, res) => {
   }
 };
 
-export const getUserProfile = async (req, res) => {
+exports.getUserProfile = async (req, res) => {
   try {
     const { id } = req.params;
     const includePrivate = req.user?.id === id;

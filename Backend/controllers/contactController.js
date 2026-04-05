@@ -1,5 +1,5 @@
-import ContactRequest from "../models/ContactRequest.js";
-import Item from "../models/Item.js";
+const ContactRequest = require("../models/ContactRequest");
+const Item = require("../models/Item");
 
 const populateRequest = (query) =>
   query
@@ -7,7 +7,7 @@ const populateRequest = (query) =>
     .populate("requester", "name email avatar")
     .populate("owner", "name email avatar");
 
-export const createContactRequest = async (req, res) => {
+exports.createContactRequest = async (req, res) => {
   try {
     const { itemId } = req.params;
     const { message, contactInfo } = req.body;
@@ -49,7 +49,7 @@ export const createContactRequest = async (req, res) => {
   }
 };
 
-export const getContactRequests = async (req, res) => {
+exports.getContactRequests = async (req, res) => {
   try {
     const { type = "all" } = req.query;
     let filter;
@@ -70,7 +70,7 @@ export const getContactRequests = async (req, res) => {
   }
 };
 
-export const shareContactInfo = async (req, res) => {
+exports.shareContactInfo = async (req, res) => {
   try {
     const { id } = req.params;
     const { contactInfo } = req.body;

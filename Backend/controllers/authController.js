@@ -18,6 +18,13 @@ exports.registerUser = async (req, res) => {
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
+    // ✅ Generate token for new user
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
     // 👇 Console log for terminal view
     console.log("\n✅ [REGISTER SUCCESS]");
     console.log("Name:", name);
@@ -25,7 +32,12 @@ exports.registerUser = async (req, res) => {
     console.log("User ID:", user._id);
     console.log("-----------------------------");
 
-    return res.status(201).json({ success: true, message: "User registered successfully" });
+    return res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      user: { id: user._id, name: user.name, email: user.email },
+      token,
+    });
   } catch (err) {
     console.error("❌ Register Error:", err);
     return res.status(500).json({ success: false, message: "Server error" });

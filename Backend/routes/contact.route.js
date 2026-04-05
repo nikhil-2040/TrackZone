@@ -1,10 +1,10 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   createContactRequest,
   getContactRequests,
   shareContactInfo,
-} from "../controllers/contactController.js";
-import { protect } from "../middleware/authMiddleware.js";
+} = require("../controllers/contactController");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.get("/", getContactRequests);
 router.post("/:itemId", createContactRequest);
 router.post("/:id/share", shareContactInfo);
 
-export default router;
+module.exports = router;

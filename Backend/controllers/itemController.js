@@ -1,5 +1,5 @@
-import Item from "../models/Item.js";
-import { createSignature } from "../utils/signature.js";
+const Item = require("../models/Item");
+const { createSignature } = require("../utils/signature");
 
 const buildSearchClause = (searchTerm) => {
   if (!searchTerm) return null;
@@ -13,7 +13,7 @@ const buildSearchClause = (searchTerm) => {
   };
 };
 
-export const createItem = async (req, res) => {
+exports.createItem = async (req, res) => {
   try {
     if (!req.user?.id) {
       return res.status(401).json({ success: false, message: "Authentication required" });
@@ -60,7 +60,7 @@ export const createItem = async (req, res) => {
   }
 };
 
-export const getItems = async (req, res) => {
+exports.getItems = async (req, res) => {
   try {
     const { status, search } = req.query;
     const filter = {};
@@ -83,7 +83,7 @@ export const getItems = async (req, res) => {
   }
 };
 
-export const getItemById = async (req, res) => {
+exports.getItemById = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id).populate("postedBy", "name email avatar");
     if (!item) {
@@ -96,7 +96,7 @@ export const getItemById = async (req, res) => {
   }
 };
 
-export const matchItems = async (req, res) => {
+exports.matchItems = async (req, res) => {
   try {
     const { query, imageData } = req.body;
     if (!query && !imageData) {
@@ -142,7 +142,7 @@ export const matchItems = async (req, res) => {
   }
 };
 
-export const updateItem = async (req, res) => {
+exports.updateItem = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) {
@@ -194,7 +194,7 @@ export const updateItem = async (req, res) => {
   }
 };
 
-export const deleteItem = async (req, res) => {
+exports.deleteItem = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) {
@@ -204,8 +204,9 @@ export const deleteItem = async (req, res) => {
       return res.status(403).json({ success: false, message: "You cannot delete this item" });
     }
 
-    await item.deleteOne();
-    return res.status(200).json({ success: true, message: "Item removed" });
+    await Item.findByIdAndDelete(req.params.id);
+
+    return res.status(200).json({ success: true, message: "Item deleted" });
   } catch (error) {
     console.error("❌ deleteItem error", error.message);
     return res.status(500).json({ success: false, message: "Unable to delete item" });
