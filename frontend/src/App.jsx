@@ -8,9 +8,7 @@ import Report from "./pages/Report";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 
-import "./styles/home.css";
-import "./styles/login.css";
-import "./styles/register.css";
+
 
 function App() {
   console.log("✅ App loaded");
